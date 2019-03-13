@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "chroma-js": "^2.0.3",
     "rc-slider": "^8.6.6",
     "react": "^16.8.4",
