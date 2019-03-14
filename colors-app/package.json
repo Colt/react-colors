@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "@material-ui/styles": "^3.0.0-alpha.10",
     "chroma-js": "^2.0.3",
     "rc-slider": "^8.6.6",
     "react": "^16.8.4",
