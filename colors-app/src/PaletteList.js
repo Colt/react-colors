@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/styles";
 const styles = {
   root: {
     backgroundColor: "blue",
-    height: "100%",
+    height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center"
@@ -21,8 +21,7 @@ const styles = {
   nav: {
     display: "flex",
     width: "100%",
-    justifyContent: "space-between",
-    color: "white"
+    justifyContent: "space-between"
   },
   palettes: {
     boxSizing: "border-box",
