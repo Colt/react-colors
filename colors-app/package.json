@@ -9,6 +9,7 @@
     "chroma-js": "^2.0.3",
     "rc-slider": "^8.6.6",
     "react": "^16.8.4",
+    "react-color": "^2.17.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",
