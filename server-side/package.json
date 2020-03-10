@@ -1,0 +1,19 @@
+{
+  "name": "nova-colors",
+  "version": "2.0.0",
+  "description": "Its added features to the original React Colors app",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SohailHaqyar/react-colors.git"
+  },
+  "author": "Colt Steel && Ahmad Sohail Haqyar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SohailHaqyar/react-colors/issues"
+  },
+  "homepage": "https://github.com/SohailHaqyar/react-colors#readme"
+}
