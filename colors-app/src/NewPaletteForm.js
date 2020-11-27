@@ -89,6 +89,15 @@ class NewPaletteForm extends Component {
       colors: arrayMove(colors, oldIndex, newIndex)
     }));
   };
+  editPalette = (updatedPalette) => {
+    updatedPalette.id = updatedPalette.paletteName.toLowerCase().replace(/ /g, "-");
+
+    console.log('this.state.colors', this.state.colors)
+    updatedPalette.colors = this.state.colors;
+
+    this.props.editPalette(updatedPalette , this.props.currentPalette.id);
+    this.props.history.push("/");
+  }
 
   render() {
     const { 
@@ -108,7 +117,7 @@ class NewPaletteForm extends Component {
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
           updatePalette={updatePalette}  
-          editPalette={editPalette}  
+          editPalette={this.editPalette}  
           currentPalette={currentPalette}
         />
         <Drawer

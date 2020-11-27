@@ -26,6 +26,12 @@ class PaletteMetaForm extends Component {
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
+
+    if(this.props.updatePalette && this.props.currentPalette) {
+      this.setState({
+        newPaletteName :this.props.currentPalette.paletteName
+      })
+    }
   }
   handleChange(evt) {
     this.setState({
@@ -40,7 +46,12 @@ class PaletteMetaForm extends Component {
       paletteName: this.state.newPaletteName,
       emoji: emoji.native
     };
-    this.props.handleSubmit(newPalette);
+    if(this.props.updatePalette ) {
+      this.props.editPalette(newPalette)
+    }
+    else{
+      this.props.handleSubmit(newPalette);
+    }
     this.setState({ stage: "" });
   }
   handleClickOpen = () => {

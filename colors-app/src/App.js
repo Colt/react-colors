@@ -42,6 +42,29 @@ class App extends Component {
       JSON.stringify(this.state.palettes)
     );
   }
+  
+  editPalette = (updatedPalette, previousId) => {
+      // Delete that previous version of Palette which is updated
+      const newPalettes = this.state.palettes.filter(
+         (palette) => palette.id !== previousId
+      );
+
+      // console.log('newPalettes', newPalettes);
+
+      // console.log('palettes: [newPalettes, updatedPalette]', [
+      //    ...newPalettes,
+      //    updatedPalette,
+      // ]);
+      // Add new Version of Palette to palettes
+      this.setState({
+         palettes: [...newPalettes, updatedPalette],
+      });
+
+      this.syncLocalStorage();
+
+      // console.log('res.data', res.data);
+   };
+
   render() {
     return (
       <Route
