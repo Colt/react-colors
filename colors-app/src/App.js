@@ -62,6 +62,28 @@ class App extends Component {
                     </Page>
                   )}
                 />
+
+                <Route
+                  exact
+                  path='/updatePalette/:id'
+                  render={(routeProps) => (
+                    <Page>
+                        <NewPaletteForm
+                          savePalette={this.savePalette}
+                          palettes={this.state.palettes}
+                          {...routeProps}
+                          updatePalette={true}
+                          editPalette={this.editPalette}
+                          currentPalette={this.state.palettes.find(
+                              (palette) =>
+                                palette.id ===
+                                routeProps.match.params.id
+                          )}
+                        />
+                    </Page>
+                  )}
+                />
+
                 <Route
                   exact
                   path='/palette/:paletteId/:colorId'
