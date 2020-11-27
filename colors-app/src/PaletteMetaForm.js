@@ -53,7 +53,11 @@ class PaletteMetaForm extends Component {
 
   render() {
     const { newPaletteName, stage } = this.state;
-    const { hideForm } = this.props;
+    const { hideForm  ,
+        updatePalette , 
+        editPalette , 
+        currentPalette
+    } = this.props;
 
     return (
       <div>
@@ -94,7 +98,7 @@ class PaletteMetaForm extends Component {
                 Cancel
               </Button>
               <Button variant='contained' color='primary' type='submit'>
-                Save Palette
+                { updatePalette ? 'Update Palette' :  'Save Palette'}
               </Button>
             </DialogActions>
           </ValidatorForm>
