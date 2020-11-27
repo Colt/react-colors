@@ -51,5 +51,17 @@ export default {
     padding: "10px",
     zIndex: 10,
     opacity: 0
-  }
+  },
+   editIcon: {
+      color: 'white',
+      backgroundColor: '#58a3df',
+      width: '20px',
+      height: '20px',
+      position: 'absolute',
+      right: '43px',
+      top: '0px',
+      padding: '10px',
+      zIndex: 10,
+      opacity: 0,
+   },
 };

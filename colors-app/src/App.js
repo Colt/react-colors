@@ -42,6 +42,29 @@ class App extends Component {
       JSON.stringify(this.state.palettes)
     );
   }
+  
+  editPalette = (updatedPalette, previousId) => {
+      // Delete that previous version of Palette which is updated
+      const newPalettes = this.state.palettes.filter(
+         (palette) => palette.id !== previousId
+      );
+
+      // console.log('newPalettes', newPalettes);
+
+      // console.log('palettes: [newPalettes, updatedPalette]', [
+      //    ...newPalettes,
+      //    updatedPalette,
+      // ]);
+      // Add new Version of Palette to palettes
+      this.setState({
+         palettes: [...newPalettes, updatedPalette],
+      });
+
+      this.syncLocalStorage();
+
+      // console.log('res.data', res.data);
+   };
+
   render() {
     return (
       <Route
@@ -62,6 +85,28 @@ class App extends Component {
                     </Page>
                   )}
                 />
+
+                <Route
+                  exact
+                  path='/updatePalette/:id'
+                  render={(routeProps) => (
+                    <Page>
+                        <NewPaletteForm
+                          savePalette={this.savePalette}
+                          palettes={this.state.palettes}
+                          {...routeProps}
+                          updatePalette={true}
+                          editPalette={this.editPalette}
+                          currentPalette={this.state.palettes.find(
+                              (palette) =>
+                                palette.id ===
+                                routeProps.match.params.id
+                          )}
+                        />
+                    </Page>
+                  )}
+                />
+
                 <Route
                   exact
                   path='/palette/:paletteId/:colorId'

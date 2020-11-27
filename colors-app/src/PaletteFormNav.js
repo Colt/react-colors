@@ -38,7 +38,10 @@ class PaletteFormNav extends Component {
       open,
       palettes,
       handleSubmit,
-      handleDrawerOpen
+      handleDrawerOpen,
+      updatePalette , 
+      editPalette , 
+      currentPalette
     } = this.props;
     const { formShowing } = this.state;
     return (
@@ -82,12 +85,15 @@ class PaletteFormNav extends Component {
               onClick={this.showForm}
               className={classes.button}
             >
-              Save
+              {updatePalette ? 'Update' : 'Save'}
             </Button>
           </div>
         </AppBar>
         {formShowing && (
           <PaletteMetaForm
+            updatePalette={updatePalette}  
+            editPalette={editPalette}  
+            currentPalette={currentPalette}
             palettes={palettes}
             handleSubmit={handleSubmit}
             hideForm={this.hideForm}

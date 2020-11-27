@@ -26,6 +26,12 @@ class PaletteMetaForm extends Component {
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
+
+    if(this.props.updatePalette && this.props.currentPalette) {
+      this.setState({
+        newPaletteName :this.props.currentPalette.paletteName
+      })
+    }
   }
   handleChange(evt) {
     this.setState({
@@ -40,7 +46,12 @@ class PaletteMetaForm extends Component {
       paletteName: this.state.newPaletteName,
       emoji: emoji.native
     };
-    this.props.handleSubmit(newPalette);
+    if(this.props.updatePalette ) {
+      this.props.editPalette(newPalette)
+    }
+    else{
+      this.props.handleSubmit(newPalette);
+    }
     this.setState({ stage: "" });
   }
   handleClickOpen = () => {
@@ -53,7 +64,11 @@ class PaletteMetaForm extends Component {
 
   render() {
     const { newPaletteName, stage } = this.state;
-    const { hideForm } = this.props;
+    const { hideForm  ,
+        updatePalette , 
+        editPalette , 
+        currentPalette
+    } = this.props;
 
     return (
       <div>
@@ -94,7 +109,7 @@ class PaletteMetaForm extends Component {
                 Cancel
               </Button>
               <Button variant='contained' color='primary' type='submit'>
-                Save Palette
+                { updatePalette ? 'Update Palette' :  'Save Palette'}
               </Button>
             </DialogActions>
           </ValidatorForm>

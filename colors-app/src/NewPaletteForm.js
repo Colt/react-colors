@@ -22,8 +22,13 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: true,
-      colors: seedColors[0].colors
-    };
+      colors:
+              ( this.props.updatePalette && this.props.currentPalette) 
+              ? this.props.currentPalette.colors
+              : seedColors[0].colors
+    };  
+
+    console.log('this.state.colors', this.state.colors)
     this.addNewColor = this.addNewColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -84,9 +89,23 @@ class NewPaletteForm extends Component {
       colors: arrayMove(colors, oldIndex, newIndex)
     }));
   };
+  editPalette = (updatedPalette) => {
+    updatedPalette.id = updatedPalette.paletteName.toLowerCase().replace(/ /g, "-");
+
+    console.log('this.state.colors', this.state.colors)
+    updatedPalette.colors = this.state.colors;
+
+    this.props.editPalette(updatedPalette , this.props.currentPalette.id);
+    this.props.history.push("/");
+  }
 
   render() {
-    const { classes, maxColors, palettes } = this.props;
+    const { 
+      classes, maxColors, palettes  ,
+      updatePalette , 
+      editPalette , 
+      currentPalette
+    } = this.props;
     const { open, colors } = this.state;
     const paletteIsFull = colors.length >= maxColors;
 
@@ -97,6 +116,9 @@ class NewPaletteForm extends Component {
           palettes={palettes}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
+          updatePalette={updatePalette}  
+          editPalette={this.editPalette}  
+          currentPalette={currentPalette}
         />
         <Drawer
           className={classes.drawer}
