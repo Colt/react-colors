@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import DraggableColorList from "./DraggableColorList";
-import { arrayMove } from "react-sortable-hoc";
+import {arrayMoveImmutable} from "array-move";
 import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
 
@@ -30,6 +30,7 @@ class NewPaletteForm extends Component {
     this.removeColor = this.removeColor.bind(this);
     this.clearColors = this.clearColors.bind(this);
     this.addRandomColor = this.addRandomColor.bind(this);
+    this.onSortEnd = this.onSortEnd.bind(this);
   }
 
   handleDrawerOpen = () => {
@@ -79,11 +80,10 @@ class NewPaletteForm extends Component {
       colors: this.state.colors.filter(color => color.name !== colorName)
     });
   }
-  onSortEnd = ({ oldIndex, newIndex }) => {
-    this.setState(({ colors }) => ({
-      colors: arrayMove(colors, oldIndex, newIndex)
-    }));
-  };
+  onSortEnd(index){
+      const {oldIndex, newIndex} = index;
+      this.setState((st) => ({colors: arrayMoveImmutable(st.colors, oldIndex, newIndex)}));
+  }
 
   render() {
     const { classes, maxColors, palettes } = this.props;
